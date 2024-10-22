@@ -1,6 +1,6 @@
 import express from 'express';
 import gameRouter from './routes/game.routes.js';
-import { PORT } from './configs/environments.js'
+import { PORT } from './configs/enviorment.js';
 import connectDB from './configs/mongo.js';
 
 

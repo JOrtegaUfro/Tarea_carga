@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
-import { MONGO_URI } from "./environments.js";
+import { MONGO_URI } from "./enviorment.js";
 
 export default function connectDB() {
     return mongoose
