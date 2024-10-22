@@ -16,5 +16,5 @@ export default function connectDB() {
 
 
 async function registerModels() {
-    await import("./models/user.model.js");
+    await import("./models/games.model.js");
 }
