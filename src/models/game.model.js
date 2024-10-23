@@ -1,11 +1,7 @@
 import mongoose from 'mongoose';
 
 const gameSchema = new mongoose.Schema({
-    id: {
-        type: Number,
-        required: true,
-        min: 1,
-    },
+    
     name: {
         type: String,
         required: true,
@@ -23,15 +19,12 @@ const gameSchema = new mongoose.Schema({
     },
     launch_date: {
         type: Date,
-        required: true,
-
     },
     price: {
         type: Number,
         required: true,
         min: 1,
     }
-
 
 });
 
