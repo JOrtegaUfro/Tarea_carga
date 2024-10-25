@@ -1,0 +1,144 @@
+{
+	"info": {
+		"_postman_id": "c3a744c7-d926-497a-b8d8-de64095c0317",
+		"name": "Tarea pruebas carga",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "27710109"
+	},
+	"item": [
+		{
+			"name": "Crear juego",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"// Convertir respuesta a JSON\r",
+							"var jsonData = pm.response.json();\r",
+							"\r",
+							"// Guarda el ID del juego en una variable de entorno\r",
+							"pm.environment.set(\"gameId\", jsonData.id);"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"Juego{{$randomInt}}\",\r\n    \"genre\": \"Sandbox\",\r\n    \"platform\": \"PC\",\r\n    \"price\": {{$randomInt}}\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/games/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"games",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Listar juegos",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/games/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"games",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Buscar juego por ID",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/games/67191b1847a722e2276b5aaa",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"games",
+						"67191b1847a722e2276b5aaa"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Modificar juego",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"Juego1\",\r\n    \"genre\": \"Sandbox\",\r\n    \"platform\": \"PC\",\r\n    \"price\": 40000\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/games/67191b1847a722e2276b5aaa",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"games",
+						"67191b1847a722e2276b5aaa"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Eliminar juego por ID",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/games/67191b1847a722e2276b5aaa",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"games",
+						"67191b1847a722e2276b5aaa"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
