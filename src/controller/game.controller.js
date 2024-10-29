@@ -67,6 +67,7 @@ async function create(req, res) {
       return res.status(200).send({
         status: "success",
         message: "¡El juego se ha registrado correctamente!",
+        game: newGame
       });
     }
   } catch (error) {

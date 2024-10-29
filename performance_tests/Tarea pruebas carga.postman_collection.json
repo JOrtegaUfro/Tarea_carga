@@ -17,7 +17,21 @@
 							"var jsonData = pm.response.json();\r",
 							"\r",
 							"// Guarda el ID del juego en una variable de entorno\r",
-							"pm.environment.set(\"gameId\", jsonData.id);"
+							"pm.environment.set(\"gameId\", jsonData.game._id);"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"// Genera un número aleatorio\r",
+							"pm.environment.set(\"uniqueInt\", Math.floor(Math.random() * 100000));\r",
+							"\r",
+							"// Genera un timestamp\r",
+							"pm.environment.set(\"uniqueTimestamp\", Date.now());"
 						],
 						"type": "text/javascript",
 						"packages": {}
@@ -29,7 +43,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"name\": \"Juego{{$randomInt}}\",\r\n    \"genre\": \"Sandbox\",\r\n    \"platform\": \"PC\",\r\n    \"price\": {{$randomInt}}\r\n}",
+					"raw": "{\r\n    \"name\": \"Juego {{uniqueTimestamp}}\",\r\n    \"genre\": \"Sandbox\",\r\n    \"platform\": \"PC\",\r\n    \"price\": {{uniqueInt}}\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -73,11 +87,33 @@
 		},
 		{
 			"name": "Buscar juego por ID",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
 			"request": {
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:3000/games/67191b1847a722e2276b5aaa",
+					"raw": "http://localhost:3000/games/{{gameId}}",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -85,7 +121,7 @@
 					"port": "3000",
 					"path": [
 						"games",
-						"67191b1847a722e2276b5aaa"
+						"{{gameId}}"
 					]
 				}
 			},
@@ -93,12 +129,28 @@
 		},
 		{
 			"name": "Modificar juego",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"// Genera un número aleatorio\r",
+							"pm.environment.set(\"uniqueInt\", Math.floor(Math.random() * 100000));\r",
+							"\r",
+							"// Genera un timestamp\r",
+							"pm.environment.set(\"uniqueTimestamp\", Date.now());"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
 			"request": {
 				"method": "PUT",
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"name\": \"Juego1\",\r\n    \"genre\": \"Sandbox\",\r\n    \"platform\": \"PC\",\r\n    \"price\": 40000\r\n}",
+					"raw": "{\r\n    \"name\": \"Juego Modificado {{uniqueTimestamp}}\",\r\n    \"genre\": \"Sandbox\",\r\n    \"platform\": \"PC\",\r\n    \"price\": {{uniqueInt}}\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -106,7 +158,7 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:3000/games/67191b1847a722e2276b5aaa",
+					"raw": "http://localhost:3000/games/{{gameId}}",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -114,7 +166,7 @@
 					"port": "3000",
 					"path": [
 						"games",
-						"67191b1847a722e2276b5aaa"
+						"{{gameId}}"
 					]
 				}
 			},
@@ -126,7 +178,7 @@
 				"method": "DELETE",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:3000/games/67191b1847a722e2276b5aaa",
+					"raw": "http://localhost:3000/games/{{gameId}}",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -134,7 +186,7 @@
 					"port": "3000",
 					"path": [
 						"games",
-						"67191b1847a722e2276b5aaa"
+						"{{gameId}}"
 					]
 				}
 			},
